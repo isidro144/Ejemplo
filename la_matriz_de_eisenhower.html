@@ -1,0 +1,598 @@
+<!doctype html>
+<html lang="es">
+<head>
+<link rel="stylesheet" type="text/css" href="base.css" />
+<link rel="stylesheet" type="text/css" href="exe_lightbox.css" />
+<link rel="stylesheet" type="text/css" href="exe_effects.css" />
+<link rel="stylesheet" type="text/css" href="content.css" />
+<link rel="stylesheet" type="text/css" href="nav.css" />
+<meta http-equiv="content-type" content="text/html;  charset=utf-8" />
+<title>La matriz de EISENHOWER | Legislación PC </title>
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+<meta name="author" content="Isidro Benítez" />
+<link rel="license" type="text/html" href="http://creativecommons.org/licenses/by-sa/4.0/" />
+<meta name="generator" content="eXeLearning 2.8.1 - exelearning.net" />
+<!--[if lt IE 9]><script type="text/javascript" src="exe_html5.js"></script><![endif]-->
+<script type="text/javascript" src="exe_jquery.js"></script>
+<script type="text/javascript" src="exe_lightbox.js"></script>
+<script type="text/javascript" src="exe_effects.js"></script>
+<script type="text/javascript" src="common_i18n.js"></script>
+<script type="text/javascript" src="common.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet"  type="text/css">
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible&display=swap" rel="stylesheet" type="text/css">
+<link href="https://fonts.cdnfonts.com/css/opendyslexic" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet"  type="text/css">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet"  type="text/css">
+
+<style>
+  
+  .z-index {
+    z-index: 999;
+  }
+
+  .select-container {
+    display: inline-block;
+    position: relative;
+    z-index: 999;
+  }
+
+  .font-button {
+    padding: 8px 16px;
+    border: 1px solid black;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    margin: 8px;
+    text-align: center;
+    text-decoration: none;
+    background-color: white;
+    color: black;
+    z-index: 999;
+  }
+
+  .fontButtonContainer {
+     z-index: 999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap; /* establece el wrap para que los botones se distribuyan en varias líneas */
+    gap: 5px; /* ajusta el espacio entre los botones */
+    position: static; /* fija la barra de botones en la página: static para que aparezca en la parte superior, fixed para que quede flotando */
+    top: 40px; /* fija la barra de botones en la parte superior de la página */
+    left: 0; /* fija la barra de botones en el margen izquierdo */
+    right: 0; /* fija la barra de botones en el margen derecho */
+    margin: auto; /* centra la barra de botones horizontalmente */
+  }
+    
+  /* Estilo para el desplegable */
+  select {
+    padding: 8px 4px;
+    border: 1px solid black;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    margin: 6px;
+    text-align: center;
+    text-decoration: none;
+    background-color: white;
+  }
+  
+  select option {
+  text-align: left;
+  }
+  
+</style>
+
+<script>
+
+// BatexeGo v3 Juan José de Haro 
+
+// Define los textos que se ven en pantalla. Reemplazar el texto entre comillas
+
+  // Textos del menú desplegable
+    const defaultText = 'Parámetros por defecto:'; //Descripción de la opción por defecto
+    const standardText = 'Fuente estándar'; // Fuente original del documento
+    
+    const dyslexicDesc = 'Dislexia:'; // Descripción de la opción OpenDyslexic  
+    const dyslexicText = 'OpenDyslexic'; 
+    
+    const hyperlegibleDesc = 'Deficiencias visuales:'; // Descripción de la opción Atkinson Hyperlegible
+    const hyperlegibleText = 'Atkinson Hyperlegible'; 
+    
+    const highLegibilityDesc = 'Alta legibilidad:'; // Descripción de las opciones de alta legibilidad
+    const opensansText = 'OpenSans'; 
+    const robotoText = 'Roboto'; 
+    const latoText = 'Lato'; 
+    const montserratText = 'Montserrat'; 
+
+  // Botones aumentar y disminuir fuente
+    const increaseFontText = 'A+'; // Botón para incrementar la fuente
+    const increaseFontTitle = 'Incrementa la fuente'; // Texto emergente al pasar el ratón
+    
+    const decreaseFontText = 'A-'; // Botón para reducir la fuente
+    const decreaseFontTitle = 'Reduce la fuente'; // Texto emergente al pasar el ratón
+
+  // Botón para traducir
+    const translateText = '🌐'; // Texto para el botón de traducción de Google
+    const translateTitle = 'Traduce la página'; // Texto emergente al pasar el ratón
+
+  // Botón para leer / detener la lectura en voz alta
+    let readText = 'Leer'; // Botón para leer en voz alta el contenido de la página
+    const readTextTitle ='Lee en voz alta la selección o la página entera'; // Texto emergente al pasar el ratón
+    
+    const stopText = 'Detener'; // Texto del botón para detener la lectura
+    const stopTextTitle = 'Detiene la lectura'; // Texto emergente al pasar el ratón
+  
+  // Botones para que los botones estén siempre visibles
+    let floatingFix = 'Fijar'; // Texto del botón flotante cuando está sobre el texto
+    let floatingFixTitle = 'Fija la barra de botones en la parte superior'; // Texto emergente al pasar el ratón
+    
+    let floatingFloat = 'Flotar'; //Texto del botón flotante cuando está fijo en la parte superior
+    let floatingFloatTitle = 'La barra permanecerá siempre visible';
+  
+  
+  // Enlace +Info
+    const infoText = '+Info'; // Texto del enlace +Info
+    const infoTextLink = 'https://batexego.bilateria.org'; // Destino del enlace de +Info
+
+// Fin 
+  
+
+  readText = `${readText} (${document.documentElement.lang})`; //Se añade el idioma al botón Leer
+  
+
+  let originalFont;
+  let currentFontSize;
+  let originalFontSize;
+  let isReading = false;
+  let utterance = new SpeechSynthesisUtterance();
+  let googleTranslateWidgetVisible = localStorage.getItem('googleTranslateWidgetVisible');
+
+  function setFont(font) {
+  document.body.style.fontFamily = font;
+  localStorage.setItem('font', font);
+  }
+
+  function setFontSize(size) {
+  currentFontSize = parseInt(window.getComputedStyle(document.body).getPropertyValue('font-size'));
+  currentFontSize += size;
+  document.body.style.fontSize = currentFontSize + 'px';
+  localStorage.setItem('fontSize', currentFontSize + 'px');
+  }
+  
+  
+
+function toggleGoogleTranslateWidget() {
+  if (!googleTranslateWidgetVisible) {
+    const script = document.createElement('script');
+    script.src = 'https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
+    script.id = 'google-translate-script';
+    document.head.appendChild(script);
+    
+    const googleTranslateElement = document.createElement('div');
+    googleTranslateElement.id = 'google_translate_element';
+    googleTranslateElement.style.position = 'fixed';
+    googleTranslateElement.style.top = '0';
+    googleTranslateElement.style.right = '0';
+    googleTranslateElement.style.zIndex = '1000';
+    document.body.appendChild(googleTranslateElement);
+
+    window.googleTranslateElementInit = function() {
+      new google.translate.TranslateElement({pageLanguage: 'auto', layout: google.translate.TranslateElement.FloatPosition.TOP_RIGHT}, 'google_translate_element');
+    };
+
+    googleTranslateWidgetVisible = true;
+    
+  } else {
+    const script = document.getElementById('google-translate-script');
+    script.remove();
+    
+    const googleTranslateElement = document.getElementById('google_translate_element');
+    googleTranslateElement.remove();
+
+    googleTranslateWidgetVisible = false;
+  }
+  localStorage.setItem('googleTranslateWidgetVisible',googleTranslateWidgetVisible);
+}
+
+
+
+
+  document.addEventListener('DOMContentLoaded', () => {
+
+    googleTranslateWidgetVisible = JSON.parse(localStorage.getItem('googleTranslateWidgetVisible'));
+  if(googleTranslateWidgetVisible) {
+    googleTranslateWidgetVisible = false;
+    toggleGoogleTranslateWidget();
+  }
+
+    
+  
+    originalFont = window.getComputedStyle(document.body).getPropertyValue('font-family');
+    localStorage.setItem('originalFont', originalFont);
+    let font = localStorage.getItem('font');
+    if (!font) {
+    font = originalFont;
+    }
+    document.body.style.fontFamily = font;
+
+    let fontSize = localStorage.getItem('fontSize');
+    originalFontSize = window.getComputedStyle(document.body).getPropertyValue('font-size');
+    localStorage.setItem('originalFontSize', originalFontSize);
+    if (!fontSize) {
+    fontSize = originalFontSize
+    localStorage.setItem('fontSize', fontSize);
+    }
+    document.body.style.fontSize = fontSize;
+
+    const fontButtonContainer = document.createElement('div');
+    fontButtonContainer.classList.add('fontButtonContainer'); 
+    
+    const selectContainer = document.createElement('div');
+    selectContainer.classList.add('select-container');
+    const select = document.createElement('select');
+    select.classList.add('z-index');
+    const standardOption = document.createElement('option');
+    standardOption.value = 'standard';
+    standardOption.text = standardText;
+
+    const defaultFontOptGroup = document.createElement('optgroup');
+    defaultFontOptGroup.label = defaultText;
+    defaultFontOptGroup.appendChild(standardOption);
+
+    select.appendChild(defaultFontOptGroup);
+
+
+    const dyslexicOption = document.createElement('option');
+    dyslexicOption.value = 'dyslexic';
+    dyslexicOption.text = dyslexicText;
+    select.add(dyslexicOption);
+
+    const dyslexicOptGroup = document.createElement('optgroup');
+    dyslexicOptGroup.label = dyslexicDesc;
+    dyslexicOptGroup.appendChild(dyslexicOption);
+    select.appendChild(dyslexicOptGroup);
+
+    const hyperlegibleOption = document.createElement('option');
+    hyperlegibleOption.value = 'hyperlegible';
+    hyperlegibleOption.text = hyperlegibleText;
+    select.add(hyperlegibleOption);
+
+    const hyperlegibleOptGroup = document.createElement('optgroup');
+    hyperlegibleOptGroup.label = hyperlegibleDesc;
+    hyperlegibleOptGroup.appendChild(hyperlegibleOption);
+    select.appendChild(hyperlegibleOptGroup);
+
+    const opensansOption = document.createElement('option');
+    opensansOption.value = 'Open Sans';
+    opensansOption.text = opensansText;
+    select.add(opensansOption);
+
+    const robotoOption = document.createElement('option');
+    robotoOption.value = 'Roboto';
+    robotoOption.text = robotoText;
+    select.add(robotoOption);
+
+    const latoOption = document.createElement('option');
+    latoOption.value = 'Lato';
+    latoOption.text = latoText;
+    select.add(latoOption);
+
+    const montserratOption = document.createElement('option');
+    montserratOption.value = 'Montserrat';
+    montserratOption.text = montserratText;
+    select.add(montserratOption);  
+    
+
+    const highLegibilityOptGroup = document.createElement('optgroup');
+    highLegibilityOptGroup.label = highLegibilityDesc;
+    highLegibilityOptGroup.appendChild(latoOption);
+    highLegibilityOptGroup.appendChild(montserratOption);
+    highLegibilityOptGroup.appendChild(opensansOption);
+    highLegibilityOptGroup.appendChild(robotoOption);
+    
+    
+    
+    select.appendChild(highLegibilityOptGroup);
+
+    // Seleccionar la opción correspondiente al cargar la página
+    if (font === originalFont) { // Nueva condición
+    select.selectedIndex = 0; // Nueva línea
+    } else if (font === 'OpenDyslexic') {
+    select.selectedIndex = 1;
+    } else if (font === 'Atkinson Hyperlegible') {
+    select.selectedIndex = 2;
+    } else if (font === 'Roboto') {
+    select.selectedIndex = 6;
+    } else if (font === 'Lato') {
+    select.selectedIndex = 3;
+    } else if (font === 'Open Sans') {
+    select.selectedIndex = 5;
+    } else if (font === 'Montserrat') {
+    select.selectedIndex = 4;
+    }
+
+    select.addEventListener('change', () => {
+    const font = select.value;
+    if (font === 'standard') {
+    setFont(originalFont);
+    fontSize = originalFontSize;
+    localStorage.setItem('fontSize', fontSize);
+    document.body.style.fontSize = localStorage.getItem('originalFontSize');
+    } else if (font === 'dyslexic') {
+    setFont('OpenDyslexic');
+    } else if (font === 'hyperlegible') {
+    setFont('Atkinson Hyperlegible');
+    } else if (font === 'Open Sans') {
+    setFont('Open Sans');
+    } else if (font === 'Roboto') {
+    setFont('Roboto');
+    } else if (font === 'Lato') {
+    setFont('Lato');
+    }  else if (font === 'Montserrat') {
+    setFont('Montserrat');
+    }
+    });
+
+    selectContainer.appendChild(select);
+    fontButtonContainer.appendChild(selectContainer);
+    
+
+    const increaseFontButton = document.createElement('button');
+    increaseFontButton.classList.add('font-button');
+    increaseFontButton.textContent = increaseFontText;
+    increaseFontButton.setAttribute('title', increaseFontTitle);
+    increaseFontButton.addEventListener('click', () => setFontSize(1));
+    fontButtonContainer.appendChild(increaseFontButton);
+
+    const decreaseFontButton = document.createElement('button');
+    decreaseFontButton.classList.add('font-button');
+    decreaseFontButton.textContent = decreaseFontText;
+    decreaseFontButton.setAttribute('title', decreaseFontTitle);
+    decreaseFontButton.addEventListener('click', () => setFontSize(-1));
+    fontButtonContainer.appendChild(decreaseFontButton);
+    
+    const translateButton = document.createElement('button');
+    translateButton.classList.add('font-button');
+    translateButton.textContent = translateText;
+    translateButton.setAttribute('title', translateTitle);
+    translateButton.addEventListener('click', toggleGoogleTranslateWidget);
+    fontButtonContainer.appendChild(translateButton);
+
+  // Botón para leer en voz alta
+    const readButton = document.createElement('button');
+    readButton.classList.add('font-button');
+    readButton.textContent = readText;
+    readButton.setAttribute('title', readTextTitle);
+    
+    readButton.addEventListener('click', () => {
+    let selectedText = window.getSelection().toString();
+    let text = '';
+    let lang = document.documentElement.lang;
+    if (selectedText !== '') {
+      text = selectedText;
+      let selectedNode = window.getSelection().anchorNode;
+      while (selectedNode && selectedNode.nodeType !== Node.ELEMENT_NODE) {
+        selectedNode = selectedNode.parentNode;
+      }
+      if (selectedNode) {
+        const selectedLang = selectedNode.getAttribute('lang');
+        if (selectedLang) {
+          lang = selectedLang;
+        }
+      }
+    } else {
+      text = document.body.innerText;
+      const bodyLang = document.body.getAttribute('lang');
+      if (bodyLang) {
+        lang = bodyLang;
+      }
+    }
+
+    utterance.lang = lang;
+    utterance.text = text;
+
+    if (!isReading) {
+      isReading = true;
+      readButton.textContent = `${stopText} (${lang})`;
+      readButton.setAttribute('title', stopTextTitle);
+      speechSynthesis.speak(utterance);
+    } else {
+      isReading = false;
+      readButton.textContent = readText;
+      readButton.setAttribute('title', readTextTitle);
+      speechSynthesis.cancel();
+    }
+
+    utterance.addEventListener('end', () => {
+      isReading = false;
+      readButton.textContent = readText;
+      readButton.setAttribute('title', readTextTitle);
+    });
+  });  
+    
+    fontButtonContainer.appendChild(readButton);
+    
+  // Botón para que la barra esté siempre visible
+    const floatingButton = document.createElement('button');
+    floatingButton.classList.add('font-button');
+    floatingButton.textContent = floatingFloat;
+    floatingButton.setAttribute('title', floatingFloatTitle);
+    floatingButton.addEventListener('click', () => {
+    if (floatingButton.textContent === floatingFix) {
+      fontButtonContainer.style.position = 'static';
+      floatingButton.textContent = floatingFloat;
+      floatingButton.setAttribute('title', floatingFloatTitle);
+      localStorage.setItem('floatState', 'static');
+    } else {
+      fontButtonContainer.style.position = 'fixed';
+      floatingButton.textContent = floatingFix;
+      floatingButton.setAttribute('title', floatingFixTitle);
+      localStorage.setItem('floatState', 'fixed');
+    }
+  });
+
+    
+
+    let floatState = localStorage.getItem('floatState');
+    if (!floatState) {
+      floatState = 'static';
+      floatingButton.textContent = floatingFix;
+      floatingButton.setAttribute('title', floatingFixTitle);
+    }
+    if (floatState === 'fixed') {
+      fontButtonContainer.style.position = 'fixed';
+      floatingButton.textContent = floatingFix;
+      floatingButton.setAttribute('title', floatingFixTitle);
+    } else {
+      fontButtonContainer.style.position = 'static';
+      floatingButton.textContent = floatingFloat;
+      floatingButton.setAttribute('title', floatingFloatTitle);
+    }
+    
+    localStorage.setItem('floatState', floatState);
+    
+  fontButtonContainer.appendChild(floatingButton);
+
+
+    const infoLink = document.createElement('a');
+    infoLink.textContent = infoText;
+    infoLink.href = infoTextLink;
+    infoLink.target = '_blank';
+    infoLink.style.marginLeft = '8px';
+    infoLink.style.fontSize = '12px';
+    fontButtonContainer.appendChild(infoLink);
+
+    
+    infoLink.classList.add('z-index');
+
+    document.body.insertBefore(fontButtonContainer, document.body.firstChild);
+   
+  });
+  
+  
+
+</script></head>
+<body class="exe-web-site" id="exe-node-69"><script type="text/javascript">document.body.className+=" js"</script>
+<div id="content">
+<p id="skipNav"><a href="#main" class="sr-av">Saltar la navegación</a></p>
+<header id="header" ><div id="headerContent">Legislación PC</div></header>
+<nav id="siteNav">
+<ul>
+   <li><a href="index.html" class="daddy main-node">Inicio Contenidos</a></li>
+   <li class="current-page-parent"><a href="planificacin_y_gestin_de_proyectos.html" class="current-page-parent daddy">Planificación y gestión de proyectos</a>
+   <ul>
+      <li><a href="gannt.html" class="no-ch">GANNT</a></li>
+      <li><a href="pert.html" class="no-ch">PERT</a></li>
+      <li><a href="ruta_crtica.html" class="no-ch">RUTA CRÍTICA</a></li>
+      <li id="active"><a href="la_matriz_de_eisenhower.html" class="active no-ch">La matriz de EISENHOWER</a></li>
+   </ul>
+   </li>
+</ul>
+</nav>
+<div id='topPagination'>
+<nav class="pagination noprt">
+<a href="ruta_crtica.html" class="prev"><span><span>&laquo; </span>Anterior</span></a>
+</nav>
+</div>
+<div id="main-wrapper">
+<section id="main">
+<header id="nodeDecoration"><h1 id="nodeTitle">La matriz de EISENHOWER</h1></header>
+<article class="iDevice_wrapper FreeTextIdevice" id="id13">
+<div class="iDevice emphasis0">
+<div id="ta13_85" class="block iDevice_content">
+<p style="background: #f7f5f5; font-weight: bold; padding: 15px; border-left: 5px solid #ff0058; text-align: center;"><span style="font-family: helvetica, arial, sans-serif; color: #ff0000;">¿Cómo priorizar tu lista de tareas pendientes?</span><span style="font-family: helvetica, arial, sans-serif;"></span></p>
+<p style="text-align: justify;">Hacer una lista de pendientes es el primer paso para realizar el trabajo. ¿Pero cómo determinas de qué debes encargarte primero cuando no tienes tiempo suficiente para hacer todo en un día? Con la priorización efectiva, puedes aumentar tu productividad y asegurarte de que tus tareas más urgentes reciban atención inmediata.</p>
+<p style="text-align: justify;">La matriz de Eisenhower es una herramienta de gestión de tareas que te ayuda a distinguir entre las tareas urgentes e importantes para que puedas organizar tu flujo de trabajo de manera eficiente. En este artículo, explicaremos cómo establecer una matriz de Eisenhower y te daremos algunos consejos para la priorización de tareas.</p>
+<div class="exe-fx exe-carousel">
+<h2>¿Qué es la matriz de Eisenhower?</h2>
+<p style="text-align: justify;">La matriz de Eisenhower es una forma de organizar las tareas según su urgencia e importancia para que puedas priorizar de manera efectiva el trabajo más importante.</p>
+<p style="text-align: justify;">Dwight D. Eisenhower, el 34.º presidente de los Estados Unidos y un general de cinco estrellas durante la Segunda Guerra Mundial, presentó la idea que más tarde conduciría a la matriz de Eisenhower. En un discurso de 1954, Eisenhower citó a un rector de universidad anónimo cuando dijo: <span style="color: #ff0000;"><strong>“Tengo dos tipos de problemas, los urgentes y los importantes. Los urgentes no son importantes, y los importantes nunca son urgentes”</strong></span>.</p>
+<p style="text-align: center;"><a href="EI_1.png" target="_blank" rel="lightbox noopener"><img src="EI_1.png" alt="" width="250" height="127" /></a></p>
+<p style="text-align: justify;">Stephen Covey, autor de Los 7 hábitos de la gente altamente efectiva, tomó las palabras de Eisenhower y las usó para desarrollar la ahora popular herramienta de gestión de tareas conocida como la matriz de Eisenhower. </p>
+<p style="text-align: justify;">La matriz de Eisenhower también se conoce como la matriz de gestión del tiempo, la caja de Eisenhower y la matriz urgente-importante. Esta herramienta te ayuda a dividir tus tareas en cuatro categorías: las tareas que realizarás primero, las tareas que programarás para más tarde, las tareas que delegarás y las tareas que eliminarás.</p>
+<h2>Cómo distinguir entre tareas urgentes e importantes</h2>
+<p style="text-align: justify;">Urgente e importante pueden parecer palabras similares, pero al analizarlas en términos del principio de Eisenhower, la diferencia entre las dos es fundamental. Diferenciar entre lo urgente y lo importante dentro de la matriz de Eisenhower puede ayudarte a identificar en qué tareas debes enfocarte y qué tareas podrían ser mejor abordadas por otros miembros del equipo.</p>
+<p style="text-align: justify;">Las tareas urgentes requieren tu atención inmediata. Cuando algo es urgente, debe hacerse ahora, y existen consecuencias claras si no finalizas esas tareas en un marco de tiempo específico. Estas son tareas que no puedes evitar, y cuanto más te demores en terminarlas, más estrés experimentarás, y esto puede llevar al agotamiento.</p>
+<p style="text-align: justify;">Algunos ejemplos de tareas urgentes pueden incluir:</p>
+<ul>
+<li style="text-align: justify;">Dar respuesta a las emergencias incendios, accidentes, emergencias sanitarias, de seguridad de servicios esenciales</li>
+<li style="text-align: justify;">Finalizar un proyecto con una fecha de entrega de último momento</li>
+<li style="text-align: justify;">Encargarte de una solicitud urgente de un cliente</li>
+<li style="text-align: justify;">Reparar una tubería rota en tu departamento</li>
+</ul>
+<p style="text-align: justify;">Las tareas importantes pueden no requerir atención inmediata, pero estas tareas te ayudan a lograr tus objetivos a largo plazo. El hecho de que estas tareas sean menos urgentes no significa que no importen. Deberás planificar cuidadosamente estas tareas para que puedas usar tus recursos de manera eficiente. </p>
+<p style="text-align: justify;">Algunos ejemplos de tareas importantes pueden incluir:</p>
+<ul>
+<li style="text-align: justify;">Dar respuestas a emergencias no urgentes: servicios esenciales de saneamientos, reparto de ropa o comida, medicamentos, diálisis, ubicación de desplazados, etc...</li>
+<li style="text-align: justify;">Planificar un proyecto a largo plazo</li>
+<li style="text-align: justify;">Establecer contactos profesionales para crear una base de clientes</li>
+<li style="text-align: justify;">Tareas habituales y proyectos de mantenimiento</li>
+</ul>
+<p style="text-align: justify;">Una vez que aprendas a distinguir entre las tareas urgentes e importantes, puedes comenzar a separar tus tareas en los cuatro cuadrantes de la matriz de Eisenhower.</p>
+</div>
+<div class="exe-fx exe-timeline">
+<h2>Los cuatro cuadrantes de la matriz de Eisenhower</h2>
+<p style="text-align: justify;">Tener una larga lista de tareas pendientes puede parecer abrumador, pero el objetivo de la matriz de Eisenhower es analizar estas tareas una por una y separarlas en cuadrantes. Cuando puedas ver tus tareas en sus categorías correspondientes, podrás programarlas y dedicarte al trabajo que sea más importante.</p>
+<h3>Cuadrante 1: <span style="color: #ff0000;">Hacer</span></h3>
+<p style="text-align: justify;">El cuadrante uno es el cuadrante “hacer”. Aquí es donde colocarás las tareas que sean urgentes e importantes. Cuando veas una tarea en tu lista de pendientes que debe hacerse ahora, que tiene claras consecuencias y afecta tus objetivos a largo plazo, colócala en este cuadrante.</p>
+<p style="text-align: justify;">No debería haber dudas en cuanto a qué tareas pertenecen a este cuadrante porque son las tareas que primero te vienen a la mente y que probablemente te estresen más.</p>
+<h3>Cuadrante 2: <span style="color: #ff0000;">Programar</span></h3>
+<p style="text-align: justify;">El cuadrante dos es el cuadrante “programar”. Aquí es donde colocarás las tareas que no son urgentes, pero que son importantes. Como estas tareas afectan tus objetivos a largo plazo, pero no tienen que hacerse de inmediato, puedes planificar estas tareas para más adelante. </p>
+<p style="text-align: justify;">Te encargarás de estas tareas después de haber finalizado las tareas del cuadrante uno. Puedes usar varios consejos sobre gestión del tiempo para ayudarte a realizar las tareas de este cuadrante. Algunas estrategias útiles pueden incluir el <a href="https://asana.com/es/resources/pareto-principle-80-20-rule" target="_blank" rel="noopener">principio de Pareto</a> o la <a href="https://asana.com/es/resources/pomodoro-technique" target="_blank" rel="noopener">técnica Pomodoro.</a></p>
+<h3>Cuadrante 3: <span style="color: #ff0000;">Delegar</span></h3>
+<p style="text-align: justify;">El cuadrante tres es el cuadrante “delegar”. Aquí es donde colocarás las tareas que son urgentes, pero que no son importantes. Estas tareas se deben realizar ahora, pero no afectan tus objetivos a largo plazo. </p>
+<p style="text-align: justify;">Como no tienes una conexión personal con estas tareas y probablemente no se requieren tus habilidades específicas para poder realizarlas, puedes delegarlas a otros miembros de tu equipo. Delegar las tareas es una de las formas más eficientes de gestionar tu carga laboral y darle a tu equipo la oportunidad de expandir sus habilidades.</p>
+<h3>Cuadrante 4:<span style="color: #ff0000;"> Eliminar</span></h3>
+<p style="text-align: justify;">Una vez que hayas analizado tu lista de pendientes y colocado las tareas en los primeros tres cuadrantes, notarás que aún te quedan algunas pocas tareas. Las tareas que quedan no son urgentes ni importantes.</p>
+<p style="text-align: justify;">Estas distracciones sin importancia y sin urgencia simplemente se interponen en tu camino para lograr tus objetivos. Coloca estos elementos restantes de tu lista de tareas pendientes en el cuarto cuadrante, que es el cuadrante “eliminar”.</p>
+<h2>4 consejos para priorizar tus tareas</h2>
+<p style="text-align: justify;">La mejor manera para comprender la diferencia entre urgencia e importancia es usar la matriz de Eisenhower, pero quizás aún tengas dificultades para priorizar las tareas. Estos son algunos consejos que pueden ayudarte con la priorización cuando tengas que ordenar las tareas en cada cuadrante.</p>
+<p style="text-align: center;"><a href="ESQUEMA.jpg" target="_blank" rel="lightbox noopener"><img src="ESQUEMA.jpg" alt="" width="259" height="344" /></a></p>
+<h3>1. Codifica las tareas por color</h3>
+<p>Codificar por color tus tareas es una táctica que puede ayudarte a visualizar los elementos de mayor prioridad. Cuando analices tu lista de tareas pendientes, intenta asignar cuatro colores según el nivel de prioridad. Usa el código de la siguiente manera:</p>
+<ul>
+<li><strong><span style="color: #00ff00;">Verde</span> </strong>= elementos de mayor prioridad</li>
+<li><strong><span style="color: #ffff00;">Amarillo</span></strong> = segunda prioridad más alta</li>
+<li><strong><span style="color: #0000ff;">Azul</span></strong> = tercera prioridad más alta</li>
+<li><strong><span style="color: #ff0000;">Rojo </span></strong>= no es una prioridad</li>
+</ul>
+<p style="text-align: justify;">Cuando hayas etiquetado tus tareas por color, estos colores te trasladarán directamente a la matriz de Eisenhower. Las tareas <strong><span style="color: #00ff00;">verdes</span></strong> son tus tareas del cuadrante uno: “hacer”. Las tareas <strong><span style="color: #ffff99;">amarillas</span></strong> son tus tareas del cuadrante dos: “programar”. Las tareas <strong><span style="color: #0000ff;">azules</span></strong> son tus tareas del cuadrante tres: “delegar” y las tareas <strong><span style="color: #ff00ff;">rojas</span></strong> son tus tareas del cuadrante cuatro: “eliminar”.</p>
+<h3>2. Limita las tareas a 10 por cuadrante</h3>
+<p style="text-align: justify;">Incluso si tienes muchas tareas en tu lista de tareas pendientes, intenta limitarlas a 10 elementos por cuadrante. Esto evitará que tu matriz de Eisenhower se vuelva desordenada y abrumadora.</p>
+<p style="text-align: justify;">Puedes hacer varias matrices <span style="color: #808080;"><em>(MÚLTIPLES, PMA O SECTORES)</em></span>, pero al limitar tu lista de tareas a acciones pendientes necesarias te asegurarás de empezar el proceso de priorización sin perder tiempo.</p>
+<h3>3. Haz listas de tareas pendientes personales y profesionales</h3>
+<p style="text-align: justify;">Otra forma de limitar la cantidad de elementos en tu matriz de Eisenhower es crear matrices separadas para tus listas de tareas pendientes personales y profesionales.</p>
+<p style="text-align: justify;">Tus tareas laborales y personales requieren diferentes plazos, recursos y métodos, y probablemente también requieran diferentes procesos mentales. Para gestionar de manera efectiva tus metas profesionales y personales, tendrás que “dividir y conquistar”. </p>
+<h3>4. Elimina, luego prioriza</h3>
+<p style="text-align: justify;">Primero, elimina las tareas innecesarias para poder priorizar de manera efectiva. Con esta estrategia, abordarás el cuadrante cuatro antes de pasar a los cuadrantes uno, dos y tres.</p>
+<p style="text-align: justify;">Cuando repases tu lista de tareas pendientes, evalúa qué elementos anotaste que no deberían estar allí.</p>
+<p style="text-align: justify;">De hecho, el 60 % de nuestro tiempo en el trabajo está dedicado a los pormenores del trabajo; por ejemplo, compartir los estados de aprobación o hacer el seguimiento de la información. Si puedes descartar elementos rápidamente, hazlo. Esto acelerará el proceso de priorización, y probablemente pasarás a una segunda ronda de eliminación al final.</p>
+</div>
+</div>
+</div>
+</article>
+<div id="packageLicense" class="cc cc-by-sa">
+<p><span>Obra publicada con</span> <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Licencia Creative Commons Reconocimiento Compartir igual 4.0</a></p>
+</div>
+</section>
+</div>
+<div id='bottomPagination'>
+<nav class="pagination noprt">
+<a href="ruta_crtica.html" class="prev"><span><span>&laquo; </span>Anterior</span></a>
+</nav>
+</div>
+<footer id="siteFooter"><script>
+$(window).load(function () {
+    $("p.toggle-idevice a").each(function(i) {
+        $(this).click();
+    });
+});
+
+$(function () {
+    $(' #main #nodeDecoration').attr('style', 'background:url(logo_cuadrado.jpg) right center/54px 45px no-repeat !important');
+});
+</script></footer></div>
+<p id="made-with-eXe"><a href="https://exelearning.net/" target="_blank" rel="noopener"><span>Creado con eXeLearning<span> (Ventana nueva)</span></span></a></p><script type="text/javascript" src="_style_js.js"></script></body></html>
